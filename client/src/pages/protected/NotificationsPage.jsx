@@ -65,7 +65,7 @@ const NotificationsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Notifications - NEEST</title>
+        <title>Notifications - NEST</title>
       </Helmet>
 
       <div className="max-w-2xl">

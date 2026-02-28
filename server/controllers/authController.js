@@ -2,6 +2,9 @@ const User = require('../models/User');
 const admin = require('../config/firebase');
 const { asyncHandler } = require('../middleware/errorHandler');
 
+// The master superadmin email
+const SUPERADMIN_EMAIL = 'mohiuddinjomeddar@gmail.com';
+
 // @desc    Register user
 // @route   POST /api/auth/register
 // @access  Public
@@ -160,7 +163,7 @@ const firebaseRegister = asyncHandler(async (req, res) => {
   // Extract name from Firebase if not provided
   const nameParts = (decoded.name || '').split(' ');
   const fName = firstName || nameParts[0] || 'User';
-  const lName = lastName || nameParts.slice(1).join(' ') || '';
+  const lName = lastName || nameParts.slice(1).join(' ') || fName;
 
   // Create new user
   user = await User.create({
@@ -170,7 +173,7 @@ const firebaseRegister = asyncHandler(async (req, res) => {
     firebaseUid: decoded.uid,
     authProvider: decoded.firebase?.sign_in_provider === 'google.com' ? 'google' : 'firebase',
     avatar: decoded.picture || '',
-    role: role || 'student',
+    role: decoded.email === SUPERADMIN_EMAIL ? 'superadmin' : (role || 'student'),
     isVerified: decoded.email_verified || false,
   });
 
@@ -230,12 +233,12 @@ const firebaseLogin = asyncHandler(async (req, res) => {
     const nameParts = (decoded.name || '').split(' ');
     user = await User.create({
       firstName: nameParts[0] || 'User',
-      lastName: nameParts.slice(1).join(' ') || '',
+      lastName: nameParts.slice(1).join(' ') || nameParts[0] || 'User',
       email: decoded.email,
       firebaseUid: decoded.uid,
       authProvider: decoded.firebase?.sign_in_provider === 'google.com' ? 'google' : 'firebase',
       avatar: decoded.picture || '',
-      role: role || 'student',
+      role: decoded.email === SUPERADMIN_EMAIL ? 'superadmin' : (role || 'student'),
       isVerified: decoded.email_verified || false,
       lastLogin: new Date(),
     });
@@ -243,6 +246,22 @@ const firebaseLogin = asyncHandler(async (req, res) => {
 
   if (!user.isActive) {
     return res.status(403).json({ success: false, message: 'Account is deactivated. Contact admin.' });
+  }
+
+  // Auto-promote superadmin email
+  if (user.email === SUPERADMIN_EMAIL && user.role !== 'superadmin') {
+    user.role = 'superadmin';
+    await user.save({ validateModifiedOnly: true });
+    // Set Firebase custom claims
+    try {
+      await admin.auth().setCustomUserClaims(user.firebaseUid, {
+        role: 'superadmin',
+        isAdmin: true,
+        isSuperAdmin: true,
+      });
+    } catch (err) {
+      console.warn('Could not set Firebase superadmin claims:', err.message);
+    }
   }
 
   const token = user.generateAuthToken();

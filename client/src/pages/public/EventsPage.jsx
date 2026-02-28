@@ -71,8 +71,8 @@ const EventsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Events - NEEST</title>
-        <meta name="description" content="Join upcoming events, workshops, hackathons, and networking sessions on NEEST." />
+        <title>Events - NEST</title>
+        <meta name="description" content="Join upcoming events, workshops, hackathons, and networking sessions on NEST." />
       </Helmet>
 
       <div className="pt-24 pb-16 min-h-screen bg-gray-50">

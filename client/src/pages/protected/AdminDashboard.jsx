@@ -59,7 +59,7 @@ const AdminDashboard = () => {
   return (
     <>
       <Helmet>
-        <title>Admin Dashboard - NEEST</title>
+        <title>Admin Dashboard - NEST</title>
       </Helmet>
 
       <div>

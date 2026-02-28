@@ -110,7 +110,7 @@ const updateEvent = asyncHandler(async (req, res) => {
     });
   }
 
-  if (event.organizer.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+  if (event.organizer.toString() !== req.user._id.toString() && req.user.role !== 'admin' && req.user.role !== 'superadmin') {
     return res.status(403).json({
       success: false,
       message: 'Not authorized.',
@@ -144,7 +144,7 @@ const deleteEvent = asyncHandler(async (req, res) => {
     });
   }
 
-  if (event.organizer.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+  if (event.organizer.toString() !== req.user._id.toString() && req.user.role !== 'admin' && req.user.role !== 'superadmin') {
     return res.status(403).json({
       success: false,
       message: 'Not authorized.',

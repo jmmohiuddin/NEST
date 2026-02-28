@@ -13,7 +13,7 @@ const api = axios.create({
 // Request interceptor - attach token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('neest_token');
+    const token = localStorage.getItem('nest_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -27,8 +27,8 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('neest_token');
-      localStorage.removeItem('neest_user');
+      localStorage.removeItem('nest_token');
+      localStorage.removeItem('nest_user');
       if (window.location.pathname !== '/login') {
         window.location.href = '/login';
       }
@@ -113,6 +113,22 @@ export const adminAPI = {
   getPendingApprovals: () => api.get('/admin/pending'),
   updateStartupStatus: (id, data) => api.put(`/admin/startups/${id}/status`, data),
   updateMentorStatus: (id, data) => api.put(`/admin/mentors/${id}/status`, data),
+  // Events management
+  getEvents: (params) => api.get('/admin/events', { params }),
+  deleteEvent: (id) => api.delete(`/admin/events/${id}`),
+  updateEventStatus: (id, data) => api.put(`/admin/events/${id}/status`, data),
+  toggleEventFeatured: (id) => api.put(`/admin/events/${id}/feature`),
+  // Startups management
+  getStartups: (params) => api.get('/admin/startups', { params }),
+  toggleStartupFeatured: (id) => api.put(`/admin/startups/${id}/feature`),
+  deleteStartup: (id) => api.delete(`/admin/startups/${id}`),
+  // Mentors management
+  getMentors: (params) => api.get('/admin/mentors', { params }),
+  deleteMentor: (id) => api.delete(`/admin/mentors/${id}`),
+  // Role management (superadmin only)
+  getAdmins: () => api.get('/admin/roles'),
+  assignAdmin: (email) => api.post('/admin/roles/assign', { email }),
+  revokeAdmin: (userId) => api.post('/admin/roles/revoke', { userId }),
 };
 
 // Matchmaking API

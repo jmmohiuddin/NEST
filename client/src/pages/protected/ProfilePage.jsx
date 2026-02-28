@@ -68,7 +68,7 @@ const ProfilePage = () => {
   return (
     <>
       <Helmet>
-        <title>Profile - NEEST</title>
+        <title>Profile - NEST</title>
       </Helmet>
 
       <div className="max-w-2xl">

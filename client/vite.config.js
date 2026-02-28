@@ -9,8 +9,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
-        name: 'NEEST - National Entrepreneurship Ecosystem Support Tool',
-        short_name: 'NEEST',
+        name: 'NEST - National Entrepreneurship Ecosystem Support Tool',
+        short_name: 'NEST',
         description: 'Empowering India\'s startup ecosystem',
         theme_color: '#6366f1',
         background_color: '#ffffff',

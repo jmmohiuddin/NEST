@@ -16,7 +16,12 @@ const ProtectedRoute = ({ children, roles = [], allowedRoles }) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  if (effectiveRoles.length > 0 && !effectiveRoles.includes(user?.role)) {
+  // superadmin has access to ALL protected routes regardless of role restriction
+  if (
+    effectiveRoles.length > 0 &&
+    !effectiveRoles.includes(user?.role) &&
+    user?.role !== 'superadmin'
+  ) {
     return <Navigate to="/dashboard" replace />;
   }
 

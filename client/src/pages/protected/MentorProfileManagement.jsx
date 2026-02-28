@@ -126,7 +126,7 @@ const MentorProfileManagement = () => {
   return (
     <>
       <Helmet>
-        <title>{existing ? 'Edit Mentor Profile' : 'Create Mentor Profile'} - NEEST</title>
+        <title>{existing ? 'Edit Mentor Profile' : 'Create Mentor Profile'} - NEST</title>
       </Helmet>
 
       <div className="max-w-2xl">

@@ -51,7 +51,7 @@ const LoginPage = () => {
   return (
     <>
       <Helmet>
-        <title>Login - NEEST</title>
+        <title>Login - NEST</title>
       </Helmet>
 
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-accent-50/30 px-4 py-24">
@@ -64,7 +64,7 @@ const LoginPage = () => {
               </div>
             </Link>
             <h1 className="mt-4 text-2xl font-bold text-gray-900 font-display">Welcome back</h1>
-            <p className="mt-2 text-gray-500">Sign in to your NEEST account</p>
+            <p className="mt-2 text-gray-500">Sign in to your NEST account</p>
           </div>
 
           {/* Form */}

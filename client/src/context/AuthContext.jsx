@@ -29,8 +29,8 @@ export const AuthProvider = ({ children }) => {
   // Helper — persist the Firebase ID-token so Axios sends it automatically
   const persistSession = async (fbUser, backendUser) => {
     const idToken = await fbUser.getIdToken();
-    localStorage.setItem('neest_token', idToken);
-    localStorage.setItem('neest_user', JSON.stringify(backendUser));
+    localStorage.setItem('nest_token', idToken);
+    localStorage.setItem('nest_user', JSON.stringify(backendUser));
     setUser(backendUser);
     setFirebaseUser(fbUser);
     setIsAuthenticated(true);
@@ -42,12 +42,12 @@ export const AuthProvider = ({ children }) => {
       if (fbUser) {
         try {
           const idToken = await fbUser.getIdToken(/* forceRefresh */ true);
-          localStorage.setItem('neest_token', idToken);
+          localStorage.setItem('nest_token', idToken);
 
           // Verify / sync with our backend
           const res = await authAPI.getMe();
           const backendUser = res.data.data;
-          localStorage.setItem('neest_user', JSON.stringify(backendUser));
+          localStorage.setItem('nest_user', JSON.stringify(backendUser));
           setFirebaseUser(fbUser);
           setUser(backendUser);
           setIsAuthenticated(true);
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
           // Backend doesn't know this user yet (first Google sign-in before
           // the /firebase-login endpoint is hit). Keep Firebase session but
           // wait for explicit login/register to sync.
-          const savedUser = localStorage.getItem('neest_user');
+          const savedUser = localStorage.getItem('nest_user');
           if (savedUser) {
             setUser(JSON.parse(savedUser));
             setIsAuthenticated(true);
@@ -63,8 +63,8 @@ export const AuthProvider = ({ children }) => {
           setFirebaseUser(fbUser);
         }
       } else {
-        localStorage.removeItem('neest_token');
-        localStorage.removeItem('neest_user');
+        localStorage.removeItem('nest_token');
+        localStorage.removeItem('nest_user');
         setUser(null);
         setFirebaseUser(null);
         setIsAuthenticated(false);
@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }) => {
     // 1. Authenticate with Firebase
     const cred = await signInWithEmailAndPassword(auth, email, password);
     const idToken = await cred.user.getIdToken();
-    localStorage.setItem('neest_token', idToken);
+    localStorage.setItem('nest_token', idToken);
 
     // 2. Hit our backend (which verifies the Firebase token)
     const res = await authAPI.firebaseLogin({ idToken });
@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
     await fbUpdateProfile(cred.user, { displayName: `${firstName} ${lastName}` });
     const idToken = await cred.user.getIdToken();
-    localStorage.setItem('neest_token', idToken);
+    localStorage.setItem('nest_token', idToken);
 
     // 2. Create in our backend
     const res = await authAPI.firebaseRegister({
@@ -117,7 +117,7 @@ export const AuthProvider = ({ children }) => {
   const loginWithGoogle = useCallback(async (role = 'student') => {
     const cred = await signInWithPopup(auth, googleProvider);
     const idToken = await cred.user.getIdToken();
-    localStorage.setItem('neest_token', idToken);
+    localStorage.setItem('nest_token', idToken);
 
     // The backend /firebase-login endpoint upserts the user
     const res = await authAPI.firebaseLogin({ idToken, role });
@@ -130,8 +130,8 @@ export const AuthProvider = ({ children }) => {
   // ─── Logout ───
   const logout = useCallback(async () => {
     await signOut(auth);
-    localStorage.removeItem('neest_token');
-    localStorage.removeItem('neest_user');
+    localStorage.removeItem('nest_token');
+    localStorage.removeItem('nest_user');
     setUser(null);
     setFirebaseUser(null);
     setIsAuthenticated(false);
@@ -139,7 +139,7 @@ export const AuthProvider = ({ children }) => {
 
   const updateUser = useCallback((userData) => {
     setUser(userData);
-    localStorage.setItem('neest_user', JSON.stringify(userData));
+    localStorage.setItem('nest_user', JSON.stringify(userData));
   }, []);
 
   const value = {

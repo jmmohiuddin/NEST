@@ -64,8 +64,8 @@ const MentorDirectory = () => {
   return (
     <>
       <Helmet>
-        <title>Mentor Directory - NEEST</title>
-        <meta name="description" content="Find expert mentors to guide your entrepreneurial journey on NEEST." />
+        <title>Mentor Directory - NEST</title>
+        <meta name="description" content="Find expert mentors to guide your entrepreneurial journey on NEST." />
       </Helmet>
 
       <div className="pt-24 pb-16 min-h-screen bg-gray-50">

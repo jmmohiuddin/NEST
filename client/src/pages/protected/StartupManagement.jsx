@@ -99,7 +99,7 @@ const StartupManagement = () => {
   return (
     <>
       <Helmet>
-        <title>{existing ? 'Edit Startup' : 'Register Startup'} - NEEST</title>
+        <title>{existing ? 'Edit Startup' : 'Register Startup'} - NEST</title>
       </Helmet>
 
       <div className="max-w-2xl">

@@ -61,7 +61,7 @@ const RegisterPage = () => {
   return (
     <>
       <Helmet>
-        <title>Sign Up - NEEST</title>
+        <title>Sign Up - NEST</title>
       </Helmet>
 
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-accent-50/30 px-4 py-24">
@@ -73,7 +73,7 @@ const RegisterPage = () => {
               </div>
             </Link>
             <h1 className="mt-4 text-2xl font-bold text-gray-900 font-display">Create an account</h1>
-            <p className="mt-2 text-gray-500">Join the NEEST entrepreneur community</p>
+            <p className="mt-2 text-gray-500">Join the NEST entrepreneur community</p>
           </div>
 
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">

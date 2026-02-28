@@ -48,7 +48,7 @@ const MyEventsPage = () => {
   return (
     <>
       <Helmet>
-        <title>My Events - NEEST</title>
+        <title>My Events - NEST</title>
       </Helmet>
 
       <div>

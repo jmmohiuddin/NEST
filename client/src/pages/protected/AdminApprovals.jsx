@@ -55,7 +55,7 @@ const AdminApprovals = () => {
   return (
     <>
       <Helmet>
-        <title>Pending Approvals - NEEST Admin</title>
+        <title>Pending Approvals - NEST Admin</title>
       </Helmet>
 
       <div>

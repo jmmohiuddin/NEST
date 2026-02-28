@@ -36,7 +36,7 @@ const AdminAnalytics = () => {
   return (
     <>
       <Helmet>
-        <title>Analytics - NEEST Admin</title>
+        <title>Analytics - NEST Admin</title>
       </Helmet>
 
       <div>

@@ -66,8 +66,8 @@ const StartupDirectory = () => {
   return (
     <>
       <Helmet>
-        <title>Startup Directory - NEEST</title>
-        <meta name="description" content="Discover innovative startups across industries on NEEST." />
+        <title>Startup Directory - NEST</title>
+        <meta name="description" content="Discover innovative startups across industries on NEST." />
       </Helmet>
 
       <div className="pt-24 pb-16 min-h-screen bg-gray-50">

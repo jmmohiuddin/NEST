@@ -100,7 +100,7 @@ const DashboardOverview = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard - NEEST</title>
+        <title>Dashboard - NEST</title>
       </Helmet>
 
       <div className="space-y-8">

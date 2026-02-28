@@ -9,6 +9,7 @@ import Pagination from '../../components/common/Pagination';
 import Modal from '../../components/common/Modal';
 
 const roleColors = {
+  superadmin: 'bg-purple-100 text-purple-700',
   admin: 'bg-red-100 text-red-700',
   mentor: 'bg-green-100 text-green-700',
   startup_founder: 'bg-red-50 text-red-600',
@@ -74,7 +75,7 @@ const AdminUsers = () => {
   return (
     <>
       <Helmet>
-        <title>Manage Users - NEEST Admin</title>
+        <title>Manage Users - NEST Admin</title>
       </Helmet>
 
       <div>

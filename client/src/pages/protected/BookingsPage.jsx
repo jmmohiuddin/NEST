@@ -94,7 +94,7 @@ const BookingsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Bookings - NEEST</title>
+        <title>Bookings - NEST</title>
       </Helmet>
 
       <div>

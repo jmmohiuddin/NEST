@@ -29,6 +29,10 @@ import AdminDashboard from './pages/protected/AdminDashboard';
 import AdminUsers from './pages/protected/AdminUsers';
 import AdminApprovals from './pages/protected/AdminApprovals';
 import AdminAnalytics from './pages/protected/AdminAnalytics';
+import AdminRoleManagement from './pages/protected/AdminRoleManagement';
+import AdminEventsManagement from './pages/protected/AdminEventsManagement';
+import AdminStartupsManagement from './pages/protected/AdminStartupsManagement';
+import AdminMentorsManagement from './pages/protected/AdminMentorsManagement';
 
 const App = () => {
   const { loading } = useAuth();
@@ -112,6 +116,38 @@ const App = () => {
           element={
             <ProtectedRoute allowedRoles={['admin']}>
               <AdminAnalytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/admin/events"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminEventsManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/admin/startups"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminStartupsManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/admin/mentors"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminMentorsManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/admin/roles"
+          element={
+            <ProtectedRoute allowedRoles={['superadmin']}>
+              <AdminRoleManagement />
             </ProtectedRoute>
           }
         />

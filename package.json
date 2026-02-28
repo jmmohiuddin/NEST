@@ -1,7 +1,7 @@
 {
-  "name": "neest",
+  "name": "nest",
   "version": "1.0.0",
-  "description": "NEEST - National Entrepreneurship Ecosystem Support Tool",
+  "description": "NEST - National Entrepreneurship Ecosystem Support Tool",
   "scripts": {
     "client": "cd client && npm run dev",
     "server": "cd server && npm run dev",

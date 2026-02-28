@@ -1,7 +1,7 @@
 {
-  "name": "neest-server",
+  "name": "nest-server",
   "version": "1.0.0",
-  "description": "NEEST Backend API Server",
+  "description": "NEST Backend API Server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
